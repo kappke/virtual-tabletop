@@ -12,7 +12,7 @@ func main() {
 	ctx := context.Background()
 
 	// spin up a websocket server
-	http.HandleFunc("/ws", websocket.HandleWebsocket)
+	http.HandleFunc("/ws/", websocket.HandleWebsocket)
 
 	// spin up a REST API server
 	http.HandleFunc("/api", api.HandleAPI)
