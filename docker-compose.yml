@@ -1,0 +1,31 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/app
+      - go-mod-cache:/go/pkg/mod
+    environment:
+      - CGO_ENABLED=0
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./web:/app
+      - web-node-modules:/app/node_modules
+    environment:
+      - VITE_API_TARGET=http://api:8080
+      - VITE_WS_TARGET=ws://api:8080
+    depends_on:
+      - api
+
+volumes:
+  go-mod-cache:
+  web-node-modules:

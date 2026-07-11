@@ -1,0 +1,14 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+cmd = "go build -o ./tmp/server ./cmd/server"
+bin = "./tmp/server"
+include_ext = ["go", "html", "tmpl"]
+exclude_dir = ["tmp", "web", "node_modules", "dist"]
+exclude_regex = ["_test\\.go"]
+delay = 300
+stop_on_error = true
+
+[log]
+time = true

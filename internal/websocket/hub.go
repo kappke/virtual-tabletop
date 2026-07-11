@@ -80,7 +80,6 @@ func (rm *RoomManager) Broadcast(roomId string, senderId string, event Websocket
 
 	room.Mutex.RLock()
 	defer room.Mutex.RUnlock()
-	logger.Info("Broadcasting message to room: " + roomId)
 	for client := range room.Clients {
 		// Skip own client
 		if senderId != "" && client.Id == senderId {
